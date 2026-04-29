@@ -31,12 +31,12 @@ Contáctame:
 <!-- partial:index.partial.html -->
 <body class="not-loaded">
 
-<button onclick="document.getElementById('bg-music').play()" 
+<button onclick="playMusic()" 
 style="
-position: absolute;
+position: fixed;
 top: 20px;
 right: 20px;
-z-index: 2000;
+z-index: 9999;
 padding: 10px 15px;
 background: #ff0066;
 color: white;
@@ -47,9 +47,18 @@ cursor: pointer;
 ▶ Play music 
 </button>
 
-<audio id="bg-music" loop>
+<audio id="bg-music" loop playsinline>
   <source src="music.hbd.mpeg" type="audio/mpeg">
 </audio>
+
+<script>
+function playMusic() {
+  const audio = document.getElementById('bg-music');
+  audio.muted = false;
+  audio.load();
+  audio.play().catch(err => console.log(err));
+}
+</script>
 
   <div class="text-overlay">
   <h1>Happy Birthday ZOZ</h1>
